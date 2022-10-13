@@ -68,7 +68,7 @@ const makeGuess = function (guess) {
         message.innerText = "You've already guessed that letter, try again!";
     } else {
         guessedLetters.push(guess);
-       // console.log(guessedLetters);
+        console.log(guessedLetters);
         updateGuessesRemaining(guess);
         showGuessedLetters();
         updateWordInProgress(guessedLetters);
@@ -100,7 +100,6 @@ const updateWordInProgress = function (guessedLetters) {
 
 wordInProgress.innerText= revealWord.join("");
 checkIfWin();
-
 };
 
 const updateGuessesRemaining  = function (guess) {
@@ -120,6 +119,7 @@ message.innerHTML = `Game over! The word was <span class = "highlight">${word}</
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
 } else {
     remainingGuessesSpan.innerText = `${remainingGuesses} guesses`; 
+    startOver();
 }
 };
     
@@ -147,6 +147,7 @@ const startOver = function () {
         remainingGuessesSpan.innerText= `${remainingGuesses} guesses`; 
         guessedLettersElement.innerHTML = "";
         message.innerText = "";
+        
         getWord();
 
         guessLetterButton.classList.remove("hide");
