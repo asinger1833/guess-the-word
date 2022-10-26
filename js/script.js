@@ -14,11 +14,15 @@ let remainingGuesses = 8;
 
 const getWord = async function () {
 const response = await fetch ("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
+
+
+
+
 const words = await response.text();
 const wordArray = words.split("\n");
 //console.log(await response.text);
 //console.log(wordArray);
-const randomIndex = Math.floor(Math.random()* wordArray.length);
+const randomIndex = Math.floor(Math.random() * wordArray.length);
 word =  wordArray[randomIndex].trim();
 placeholder(word);
 };
@@ -96,7 +100,7 @@ const updateWordInProgress = function (guessedLetters) {
             revealWord.push("●");
         }
     }
-    console.log(revealWord);
+    //console.log(revealWord);
 
 wordInProgress.innerText= revealWord.join("");
 checkIfWin();
@@ -115,11 +119,12 @@ message.innerText = `Good guess! The word has the letter ${guess}.`;
 
 if (remainingGuesses === 0) {
 message.innerHTML = `Game over! The word was <span class = "highlight">${word}</span>.`;
+    startOver();
 } else if (remainingGuesses === 1) {
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
 } else {
     remainingGuessesSpan.innerText = `${remainingGuesses} guesses`; 
-    startOver();
+
 }
 };
     
